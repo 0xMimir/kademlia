@@ -13,8 +13,8 @@ extern crate serde;
 extern crate log;
 
 mod kademlia;
-mod table;
 mod socket;
+mod table;
 mod types;
 
 pub(crate) mod helpers;

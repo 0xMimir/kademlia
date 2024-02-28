@@ -1,3 +1,5 @@
+// use num_bigint::BigUint;
+
 use crate::{types::key::Key, KEY_SIZE};
 
 // uint::construct_uint! {
@@ -30,6 +32,12 @@ pub fn bucket_index(local: &Key, key: &Key) -> usize {
     // println!("{:?}", index);
 
     // index.unwrap_or_default() as usize
+
+    // taken from stack overflow
+    // let bits = BigUint::from_bytes_le(&distance.0).bits() as usize;
+    // let offset = hash_bits - dist;
+    // offset.min(bucket_count - 1);
+
     KEY_SIZE * 8 - 1
 }
 
@@ -39,11 +47,18 @@ fn bucket_index_test() {
 
     let key = Key::new("test".to_owned());
     dbg!(key, bucket_index(&key, &key));
+    println!();
 
     let a = Key([0; super::KEY_SIZE]);
     let mut b = Key([0; super::KEY_SIZE]);
     b.0[KEY_SIZE - 1] = u8::MAX;
     dbg!(a, b, bucket_index(&a, &b));
+    println!();
+
+    let a = Key([0; super::KEY_SIZE]);
+    let b = Key([u8::MAX; super::KEY_SIZE]);
+    dbg!(a, b, bucket_index(&a, &b));
+    println!();
 
     // let mut rng = rand::thread_rng();
     // for _ in 0..100 {
@@ -58,5 +73,5 @@ fn bucket_index_test() {
     //     dbg!(a, b, bucket_index(&a, &b));
     //     println!();
     // }
-    // panic!();
+    panic!();
 }

@@ -2,7 +2,7 @@ use super::node::Node;
 
 #[derive(Debug)]
 pub struct KBucket {
-    pub nodes: Vec<Node>,
+    pub nodes: Vec<Node>, // This should be handled better
     pub size: usize,
 }
 

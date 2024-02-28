@@ -1,7 +1,7 @@
 use crate::{
     helpers::ExpectLock,
-    table,
     socket::NetworkInterface,
+    table,
     types::{
         distance::NodeDistance,
         key::Key,
@@ -51,8 +51,9 @@ impl Kademlia {
         let node = Node::new(port, peer_id);
         let config = KademliaConfig::default();
 
-        let routes = table::RoutingTable::new(node, config.n_buckets, config.k_param);
-        
+        let mut routes = table::RoutingTable::new(node, config.n_buckets, config.k_param);
+        routes.update(node);
+
         let (rpc_sender, rpc_receiver) = mpsc::channel();
 
         let rpc = NetworkInterface::new(node);

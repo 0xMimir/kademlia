@@ -22,8 +22,8 @@ pub struct RoutingTable {
 
 impl RoutingTable {
     pub fn new(node: Node, n_buckets: usize, k_param: usize) -> Self {
-        let mut kbuckets = (0..n_buckets).map(KBucket::new).collect::<Vec<_>>();
-        kbuckets[0].nodes.push(node);
+        let kbuckets = (0..n_buckets).map(KBucket::new).collect::<Vec<_>>();
+
         Self {
             node,
             kbuckets,
@@ -71,7 +71,6 @@ impl RoutingTable {
             error!("Removing node that is not in state")
         }
     }
-
 
     // count only for testing will later be replaced
     pub fn get_closest_nodes(&self, key: &Key, count: usize) -> Vec<NodeDistance> {

@@ -69,7 +69,7 @@ fn node_finding() {
 
     dbg!(new_node.get_all_know_nodes().len());
     // new_node.bootstrap(*new_node.node());
-    dbg!(new_node.get_all_know_nodes().len());
+    // dbg!(new_node.get_all_know_nodes().len());
     assert!(
         new_node.get_all_know_nodes().len() > 2,
         "At least 1 node should have connected to node in process"

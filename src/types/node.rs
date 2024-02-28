@@ -9,13 +9,10 @@ pub struct Node {
 
 impl Node {
     pub fn new(port: u16, id: Key) -> Self {
-        Node {
-            port,
-            id,
-        }
+        Node { port, id }
     }
-    
+
     pub fn get_addr(&self) -> String {
-        format!("192.168.1.102:{}", self.port)
+        format!("{}:{}", env!("IP_ADDR"), self.port)
     }
 }

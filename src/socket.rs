@@ -88,7 +88,7 @@ impl NetworkInterface {
     pub fn send_msg(&self, msg: RpcMessage, destination: u16) {
         let encoded = msg.to_bytes();
         self.socket
-            .send_to(&encoded, format!("192.168.1.102:{}", destination))
+            .send_to(&encoded, format!("{}:{}", env!("IP_ADDR"), destination))
             .expect("Error sending");
     }
 
